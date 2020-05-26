@@ -1,0 +1,167 @@
+body {
+    font-family: 'Playfair Display', serif;
+    background: #b2dfdb;
+    color: rgba(61, 57, 57, 0.649);
+}
+
+img {
+    border-radius: 20px;
+}
+
+.container {
+
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    text-decoration: none;
+}
+
+#title .title-text {
+    color: rgba(61, 57, 57, 0.649);
+}
+
+.input-field {
+    width: 40%;
+}
+
+.input {
+    opacity: 0.8;
+    color: rgba(61, 57, 57, 0.649);
+    text-align: center;
+}
+
+.tutorial {
+    text-align: center;
+    width: 40%;
+    height: 50px;
+}
+
+/* MOVIE DETAILS */
+
+main {
+    margin: 50px 0;
+    width: 100%;
+}
+
+
+.movieDiv {
+    width: 300px;
+    height: 550px;
+    float: left;
+    margin: 0 20px 60px;
+    padding: 1rem;
+    /* background: $mainC; */
+    border-radius: 20px;
+    box-shadow:
+        18px 18px 36px #8383833d,
+        -18px -18px 36px #ffffff98;
+    transition: 0.2s ease-in;
+}
+
+
+.movieDiv:hover {
+    opacity: 0.5;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.images-holder img {
+    width: 270px;
+    height: 370px;
+}
+
+.icon-view {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    right: 7rem;
+    bottom: 0;
+    top: 24rem;
+    color: #fff;
+
+}
+
+.btn-floating i {
+    font-size: 1rem;
+    background-color: #e0f2f1;
+    color: rgba(61, 57, 57, 0.649);
+    box-shadow: 18px 18px 36px #8383833d,
+        -18px -18px 36px #ffffff98;
+}
+
+
+
+
+/* MOVIE RESULTS CARD */
+
+.movieDiv--two {
+    padding: 5rem;
+    border-radius: 30px;
+    box-shadow: 18px 18px 36px #e6e6e61e,
+        -18px -18px 36px #ffffff30;
+}
+
+.card-image--two {
+    float: left;
+    margin: 0 25px 0 0;
+    margin-bottom: 2rem;
+}
+
+.content {
+    padding: 10rem 0;
+}
+
+.content h5 {
+    font-size: 1rem;
+    max-width: 800px;
+    line-height: 1.3;
+}
+
+.results-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.results-title {
+    margin: 0 0.5rem;
+    font-size: 1.8rem;
+}
+
+#collection-item {
+    margin: 1rem;
+    border-radius: 20px;
+    box-shadow: 18px 18px 36px #e6e6e61e,
+        -18px -18px 36px #ffffff30;
+}
+
+
+#collection {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+#collection-item p {
+    font-size: 1.5rem;
+    color: #80cbc4;
+    font-weight: 800;
+}
+
+.text-detail {
+    margin-left: 15px;
+}
