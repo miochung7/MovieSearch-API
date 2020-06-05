@@ -6,9 +6,9 @@ LEARNT:
 // Definining functions in objects
 
 const autoCompleteConfig = {
-	renderOption(movie) {
-		const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster; // If movie.Poster equals N/A it will assign value of empty string. Otherwise will return movie.Poster to imgSRC
-		return `
+    renderOption(movie) {
+        const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster; // If movie.Poster equals N/A it will assign value of empty string. Otherwise will return movie.Poster to imgSRC
+        return `
         <div class="images-holder">
             <div class="card-image">
                 <img src="${imgSrc}"/>
@@ -21,67 +21,67 @@ const autoCompleteConfig = {
        
         
         `;
-	},
-	inputValue(movie) {
-		return movie.Title;
-	},
-	async fetchData(searchTerm) {
-		const response = await axios.get('http://www.omdbapi.com/', {
-			params: {
-				// this object will be turned into a string and appended to the end of the URL
-				apikey: '63a1f276',
-				s: searchTerm
-			}
-		});
-		if (response.data.Error) {
-			// If there is no results, menu is hidden.
-			return [];
-		}
+    },
+    inputValue(movie) {
+        return movie.Title;
+    },
+    async fetchData(searchTerm) {
+        const response = await axios.get('https://www.omdbapi.com/', {
+            params: {
+                // this object will be turned into a string and appended to the end of the URL
+                apikey: '63a1f276',
+                s: searchTerm
+            }
+        });
+        if (response.data.Error) {
+            // If there is no results, menu is hidden.
+            return [];
+        }
 
-		return response.data.Search;
-	}
+        return response.data.Search;
+    }
 };
 
 // Creating a new object of createAutoComplete, takes all of the properties in autoCompleteConfig and adds in new property of rootWidget
 // Parameters destructuring
 createAutoComplete({
-	...autoCompleteConfig, // Makes a copy of this object and throws into this object
-	rootWidget: document.querySelector('#autocomplete'),
-	onOptionSelect(movie) {
-		onMovieSelect(movie, document.querySelector('.results'));
-	}
+    ...autoCompleteConfig, // Makes a copy of this object and throws into this object
+    rootWidget: document.querySelector('#autocomplete'),
+    onOptionSelect(movie) {
+        onMovieSelect(movie, document.querySelector('.results'));
+    }
 });
 
 // Added a helper function - to call for an API request to fetch more data based on the imdbID
 
 const onMovieSelect = async (movie, summary) => {
-	const response = await axios.get('http://www.omdbapi.com/', {
-		params: {
-			apikey: '63a1f276',
-			i: movie.imdbID
-		}
-	});
+    const response = await axios.get('https://www.omdbapi.com/', {
+        params: {
+            apikey: '63a1f276',
+            i: movie.imdbID
+        }
+    });
 
-	summary.innerHTML = movieTemplate(response.data);
+    summary.innerHTML = movieTemplate(response.data);
 };
 
 // movieDetail will pass in all the movie object
 const movieTemplate = (movieDetail) => {
-	// turns boxOffice string - replaces $ and , with empty space turns '$600,000' = 600000
-	const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
-	const metaScore = parseInt(movieDetail.Metascore);
-	const imdbRating = parseFloat(movieDetail.imdbRating);
-	const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
-	// Gives an array, where every element in the array is one of the words/numbers ex - ["Nominated", "for", "3", "Oscards"]
-	const awards = movieDetail.Awards.split(' ').reduce((prevVal, word) => {
-		const value = parseInt(word);
-		if (isNaN(value)) {
-			return prevVal;
-		} else {
-			return prevVal + value;
-		}
-	}, 0);
-	return `
+    // turns boxOffice string - replaces $ and , with empty space turns '$600,000' = 600000
+    const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
+    const metaScore = parseInt(movieDetail.Metascore);
+    const imdbRating = parseFloat(movieDetail.imdbRating);
+    const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
+    // Gives an array, where every element in the array is one of the words/numbers ex - ["Nominated", "for", "3", "Oscards"]
+    const awards = movieDetail.Awards.split(' ').reduce((prevVal, word) => {
+        const value = parseInt(word);
+        if (isNaN(value)) {
+            return prevVal;
+        } else {
+            return prevVal + value;
+        }
+    }, 0);
+    return `
 
     <div class="movieDiv--two">
         
